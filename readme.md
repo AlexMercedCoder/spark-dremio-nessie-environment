@@ -119,6 +119,17 @@ docker-compose down
 
 ### Step 3 - Connect Dremio to Data Lake
 
+#### Adding Minio as a storage source
+
+- To add the object storage as a source, select "s3" as a source
+  - Enter "admin" as your access key and "password" as your secret key
+  - make sure that "compatibility mode" is checked
+  - add the following connection properties
+    - `fs.s3a.path.style.access` to `true`
+    - `fs.s3a.endpoint` to `minio:9000`
+   
+#### Adding Nessie as a Metastore source
+
 - Open up a new internet browser tab
 
 - Visit Dremio at `http://localhost:9047`
