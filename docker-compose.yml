@@ -6,7 +6,7 @@ services:
     image: projectnessie/nessie:latest
     container_name: nessie
     networks:
-      de-end-to-end:
+      spark-dremio:
     ports:
       - 19120:19120
   # Minio Storage Server
@@ -20,7 +20,7 @@ services:
       - MINIO_REGION_NAME=us-east-1
       - MINIO_REGION=us-east-1
     networks:
-      de-end-to-end:
+      spark-dremio:
     ports:
       - 9001:9001
       - 9000:9000
@@ -35,7 +35,7 @@ services:
       - 32010:32010
     container_name: dremio
     networks:
-      de-end-to-end:
+      spark-dremio:
   # Spark
   spark:
     platform: linux/x86_64
@@ -51,18 +51,6 @@ services:
 
     container_name: spark
     networks:
-      de-end-to-end:
-  # Postgres
-  postgres:
-    image: postgres:latest
-    container_name: postgres
-    environment:
-      POSTGRES_DB: mydb
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-    ports:
-      - "5435:5432"
-    networks:
-      de-end-to-end:
+      spark-dremio:
 networks:
-  de-end-to-end:
+  spark-dremio:
